@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ROCK SCISSORS PAPER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/RockScissorsPaper/style.css' %}" rel='stylesheet' />
+</head>
+
+<body>
+    <header class="header center">
+        <h1 class="header-title">Rock Scissors Paper</h1>
+    </header>
+    <section class="main-section">
+        <div class="user-section">
+            <div class="player-name-container">
+                <h1 class="player-name-title">Player: </h1>
+                <h1 class="player-name">Amir</h1>
+            </div>
+            <h1 class="scoreBoard" id="user-play-result">Result</h1>
+            <div class="center user-action-picture-container">
+                <img src="../../static/img/Backround/eberhard-grossgasteiger-Vg7xgTzU97M-unsplash.jpg"
+                    class="user-action-picture" width="100%" height="100%" />
+            </div>
+            <div class="scoreBoard-container">
+                <div class="center scoreBoard-container-row">
+                    <span class="scoreBoard-title">Win: </span>
+                    <span class="scoreBoard-counter" id="user-win-counter">0</span>
+                </div>
+                <div class="center scoreBoard-container-row">
+                    <span class="scoreBoard-title">Lose: </span>
+                    <span class="scoreBoard-counter" id="user-lose-counter">0</span>
+                </div>
+            </div>
+            <button id="play-button" type="button">play !</button>
+        </div>
+        <div class="computer-section">
+            <div class="player-name-container">
+                <h1 class="player-name-title">Player: </h1>
+                <h1 class="player-name">PC</h1>
+            </div>
+            <h1 class="scoreBoard" id="pc-play-result">Result</h1>
+            <div class="center computer-action-picture-container">
+                <img src="../../static/img/Backround/eberhard-grossgasteiger-Vg7xgTzU97M-unsplash.jpg"
+                    class="computer-action-picture" width="100%" height="100%" />
+            </div>
+            <div class="scoreBoard-container">
+                <div class="center scoreBoard-container-row">
+                    <span class="scoreBoard-title">Win: </span>
+                    <span class="scoreBoard-counter" id="pc-win-counter">0</span>
+                </div>
+                <div class="center scoreBoard-container-row">
+                    <span class="scoreBoard-title">Lose: </span>
+                    <span class="scoreBoard-counter" id="pc-lose-counter">0</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'js/RockScissorsPaper/script.js' %}"></script>
+</body>
+
+</html>

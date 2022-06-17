@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: headerTitle;
+    src: url('../../font/LibreFranklin-Light.ttf');
+}
+
+@font-face {
+    font-family: scoreBoard;
+    src: url('../../font/BebasNeue-Regular.ttf');
+}
+
+@font-face {
+    font-family: player-name-title;
+    src: url('../../font/Prompt-Light.ttf');
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    background-image: url('../../img/Backround/pawel-czerwinski-IXgSpDrxsgM-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.header {
+    width: 100%;
+}
+
+.header-title {
+    margin: 1% 0;
+    padding: 0 2%;
+    color: #F7D716;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: headerTitle;
+    border-bottom: 1px solid thistle;
+}
+
+.main-section {
+    margin: 0 auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(2, 40%);
+    justify-content: space-around;
+}
+
+.computer-section,
+.user-section {
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player-name-container {
+    width: 300px;
+    margin: 1% auto 0;
+    display: flex;
+    align-items: baseline;
+}
+
+.player-name-title,
+.player-name {
+    color: #F24C4C;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: player-name-title;
+}
+
+.player-name {
+    margin-left: 2%;
+    font-size: 24px;
+    color: white;
+}
+
+.scoreBoard {
+    margin: 1% 0 1%;
+    color: white;
+    font-size: 25px;
+    font-family: scoreBoard;
+}
+
+.computer-action-picture-container,
+.user-action-picture-container {
+    width: 300px;
+    height: 400px;
+    max-width: 300px;
+    max-height: 400px;
+    margin: 1% auto;
+    padding: 1%;
+    border-radius: 10px;
+    /* background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); */
+    background-color: #EC9B3B;
+}
+
+.computer-action-picture,
+.user-action-picture {
+    border-radius: 10px;
+}
+
+.scoreBoard-container {
+    width: 300px;
+    margin: 1% auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.scoreBoard-container-row {
+    display: flex;
+    padding: 0% 1%;
+    margin: 1% auto;
+}
+
+.scoreBoard-title,
+.scoreBoard-counter {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: headerTitle;
+}
+
+.scoreBoard-counter {
+    margin-left: 5px;
+}
+
+#play-button {
+    margin-bottom: 1%;
+    border: none;
+    border-radius: 7px;
+    padding: 2% 7%;
+    font-size: 17px;
+    color: #293462;
+    font-weight: bold;
+    font-family: headerTitle;
+    /* background-image: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%); */
+    background-color: #F24C4C;
+    cursor: pointer;
+}

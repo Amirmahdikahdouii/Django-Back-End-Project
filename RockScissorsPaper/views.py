@@ -4,5 +4,5 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def ren(a):
-    return HttpResponse("Hi")
+def index(request):
+    return render(request, "RockScissorsPaper/index.html")
