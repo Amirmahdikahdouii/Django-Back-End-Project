@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/accounts/registerPage.css' %}"/>
+</head>
+<body>
+<header class="header">
+    <a href="" class="header-logo-title">
+        <h1>Home</h1>
+    </a>
+    <ul class="header-menu-items-container">
+        <li class="header-menu-item"><a href="#">Login</a></li>
+        <li class="header-menu-item"><a href="#">Blog</a></li>
+        <li class="header-menu-item"><a href="#">Games</a></li>
+        <li class="header-menu-item"><a href="#">Mini Projects</a></li>
+        <li class="header-menu-item"><a href="#">About</a></li>
+        <li class="header-menu-item"><a href="#">Contact</a></li>
+    </ul>
+</header>
+<section class="main-section">
+    <h1 class="form-title">Register</h1>
+    <form class="register-form" method="post" action="{% url 'registerPage' %}">
+        <div class="center register-form-row">
+            <label for="{{ form.fullName.id_for_label }}"
+                   class="register-form-label">{{ form.fullName.label|title }}</label>
+            {{ form.fullName }}
+        </div>
+        <div class="center register-form-row">
+            <label for="{{ form.username.id_for_label }}"
+                   class="register-form-label">{{ form.username.label|title }}</label>
+            {{ form.username }}
+        </div>
+        <div class="center register-form-row">
+            <label for="{{ form.email.id_for_label }}" class="register-form-label">{{ form.email.label|title }}</label>
+            {{ form.email }}
+        </div>
+        <div class="center register-form-row">
+            <label for="{{ form.password.id_for_label }}"
+                   class="register-form-label">{{ form.password.label|title }}</label>
+            {{ form.password }}
+        </div>
+        <div class="center register-form-row">
+            <label for="{{ form.re_password.id_for_label }}"
+                   class="register-form-label">{{ form.re_password.label|title }}</label>
+            {{ form.re_password }}
+        </div>
+        <div class="center register-form-row register-form-row-submit-button">
+            <button class="register-form-submit-button" type="submit">
+                Submit
+            </button>
+        </div>
+    </form>
+</section>
+</body>
+</html>
