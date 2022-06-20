@@ -26,30 +26,76 @@
 <section class="main-section">
     <h1 class="form-title">Register</h1>
     <form class="register-form" method="post" action="{% url 'registerPage' %}">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {#   first name input     #}
         <div class="center register-form-row">
-            <label for="{{ form.fullName.id_for_label }}"
-                   class="register-form-label">{{ form.fullName.label|title }}</label>
-            {{ form.fullName }}
+            <label for="{{ form.first_name.id_for_label }}"
+                   class="register-form-label">{{ form.first_name.label|capfirst|add:": " }}</label>
+            {{ form.first_name }}
         </div>
+        {% if form.errors %}
+            {% for error in form.first_name.errors %}
+                <p class="center register-form-row register-form-row-error-message">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {#   last name input     #}
+        <div class="center register-form-row">
+            <label for="{{ form.last_name.id_for_label }}"
+                   class="register-form-label">{{ form.last_name.label|title|add:": " }}</label>
+            {{ form.last_name }}
+        </div>
+        {% if form.errors %}
+            {% for error in form.last_name.errors %}
+                <p class="center register-form-row register-form-row-error-message">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {#    username input    #}
         <div class="center register-form-row">
             <label for="{{ form.username.id_for_label }}"
-                   class="register-form-label">{{ form.username.label|title }}</label>
+                   class="register-form-label">{{ form.username.label|title|add:": " }}</label>
             {{ form.username }}
         </div>
+        {% if form.errors %}
+            {% for error in form.username.errors %}
+                <p class="center register-form-row register-form-row-error-message">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {#  email input  #}
         <div class="center register-form-row">
-            <label for="{{ form.email.id_for_label }}" class="register-form-label">{{ form.email.label|title }}</label>
+            <label for="{{ form.email.id_for_label }}"
+                   class="register-form-label">{{ form.email.label|title|add:": " }}</label>
             {{ form.email }}
         </div>
+        {% if form.errors %}
+            {% for error in form.email.errors %}
+                <p class="center register-form-row register-form-row-error-message">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
         <div class="center register-form-row">
-            <label for="{{ form.password.id_for_label }}"
-                   class="register-form-label">{{ form.password.label|title }}</label>
-            {{ form.password }}
+            <label for="{{ form.password1.id_for_label }}"
+                   class="register-form-label">{{ form.password1.label|title|add:": " }}</label>
+            {{ form.password1 }}
         </div>
+        {% if form.errors %}
+            {% for error in form.password1.errors %}
+                <p class="center register-form-row register-form-row-error-message">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
         <div class="center register-form-row">
-            <label for="{{ form.re_password.id_for_label }}"
-                   class="register-form-label">{{ form.re_password.label|title }}</label>
-            {{ form.re_password }}
+            <label for="{{ form.password2.id_for_label }}"
+                   class="register-form-label">{{ form.password2.label|title|add:": " }}</label>
+            {{ form.password2 }}
         </div>
+        {% if form.errors %}
+            {% for error in form.password2.errors %}
+                <p class="center register-form-row register-form-row-error-message">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
         <div class="center register-form-row register-form-row-submit-button">
             <button class="register-form-submit-button" type="submit">
                 Submit

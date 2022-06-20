@@ -29,12 +29,12 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: #1a132f;
 }
 
 .form-title {
     margin: 0 auto;
-    color: white;
+    color: #F7E2E2;
     font-weight: bold;
     font-size: 25px;
     font-family: form-title;
@@ -54,21 +54,29 @@ body {
     justify-content: space-between;
 }
 
-.register-form-row-submit-button{
+.register-form-row-error-message{
+    margin: 1% 0;
+    color: #F24C4C;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: form-title;
+}
+
+.register-form-row-submit-button {
     margin-top: 5%;
 }
 
 .register-form-label {
-    color: white;
+    color: #F7E2E2;
     width: 50%;
     font-size: 17px;
-    text-align: center;
+    text-align: left;
     font-weight: bold;
     font-family: form-label;
     cursor: pointer;
 }
 
-.register-form-input {
+.register-form-label + input {
     max-width: 50%;
     padding: 2% 5%;
     font-size: 15px;
@@ -76,12 +84,12 @@ body {
     font-family: form-label;
     border: none;
     border-radius: 7px;
-    background-color: rgb(0, 0, 0);
-    color: white;
+    background-color: #5B7DB1;
+    color: #F7E2E2;
 }
 
 .register-form-input::placeholder {
-    color: white;
+    color: #F7E2E2;
     font-size: 15px;
     font-weight: bold;
     font-family: form-label;
@@ -91,7 +99,7 @@ body {
     padding: 3% 7%;
     margin: 0 auto;
     color: #F7E2E2;
-    background-color: #1A132F;
+    background-color: #5B7DB1;
     font-size: 17px;
     font-weight: bold;
     font-family: form-label;
