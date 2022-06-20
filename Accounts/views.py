@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
+from django.views import View
 
 
 # Create your views here.
@@ -29,16 +30,31 @@ def registerPage(req):
         return HttpResponseForbidden(content_type="html", content="Not Access To this page")
 
 
-def loginPage(req):
+def logOut(req):
     if req.user.is_authenticated:
-        return HttpResponse("profile Page")
-    if req.method == "POST":
-        loginForm = LoginForm(req.POST)
-        userNameExist = loginForm.checkUsername()
+        logout(req)
+        return redirect("loginPage")
+    return HttpResponseForbidden("You Dont Have Access to this URL")
+
+
+class LoginClassView(View):
+    form_class = LoginForm
+    initial = {"key": "value"}
+    template_name = "account/loginPage.html"
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponse("profile Page")
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        userNameExist = form.checkUsername()
         if userNameExist is not None:
-            return render(req, "account/loginPage.html", {"form": loginForm, "error": userNameExist})
-        username = loginForm.data.get("username")
-        password = loginForm.data.get("password")
+            return render(request, "account/loginPage.html", {"form": form, "error": userNameExist})
+        username = form.data.get("username")
+        password = form.data.get("password")
 
         def getUserModel(userName: str, passWord: str, fieldForUsername):
             if fieldForUsername == "username":
@@ -49,23 +65,13 @@ def loginPage(req):
 
         try:
             user = getUserModel(username, password, "username")
-            login(req, user)
+            login(request, user)
             return HttpResponse("profile Page")
         except User.DoesNotExist:
             try:
                 user = getUserModel(username, password, "email")
-                login(req, user)
+                login(request, user)
                 return HttpResponse("profile Page")
             except User.DoesNotExist:
-                return render(req, "account/loginPage.html",
-                              {"form": loginForm, "error": "Username or Password is Not Valid"})
-    elif req.method == "GET":
-        loginForm = LoginForm()
-        return render(req, "account/loginPage.html", {"form": loginForm})
-
-
-def logOut(req):
-    if req.user.is_authenticated:
-        logout(req)
-        return redirect("loginPage")
-    return HttpResponseForbidden("You Dont Have Access to this URL")
+                return render(request, "account/loginPage.html",
+                              {"form": form, "error": "Username or Password is Not Valid"})
