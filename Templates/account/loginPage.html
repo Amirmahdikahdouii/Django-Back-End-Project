@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/accounts/registerPage.css' %}"/>
+</head>
+<body>
+<header class="header">
+    <a href="" class="header-logo-title">
+        <h1>Home</h1>
+    </a>
+    <ul class="header-menu-items-container">
+        <li class="header-menu-item"><a href="#">Login</a></li>
+        <li class="header-menu-item"><a href="#">Blog</a></li>
+        <li class="header-menu-item"><a href="#">Games</a></li>
+        <li class="header-menu-item"><a href="#">Mini Projects</a></li>
+        <li class="header-menu-item"><a href="#">About</a></li>
+        <li class="header-menu-item"><a href="#">Contact</a></li>
+    </ul>
+</header>
+<section class="main-section">
+    <h1 class="form-title">Login</h1>
+    <form class="register-form" method="post" action="{% url 'loginPage' %}">
+        {% csrf_token %}
+        {% if error is not None %}
+            <p class="center register-form-row register-form-row-error-message">{{ error }}</p>
+        {% endif %}
+        {#    username input    #}
+        <div class="center register-form-row">
+            <label for="{{ form.username.id_for_label }}"
+                   class="register-form-label">{{ form.username.label|title|add:": " }}</label>
+            {{ form.username }}
+        </div>
+        {% if form.errors %}
+            {% for error in form.username.errors %}
+                <p class="center register-form-row register-form-row-error-message">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        <div class="center register-form-row">
+            <label for="{{ form.password.id_for_label }}"
+                   class="register-form-label">{{ form.password.label|title|add:": " }}</label>
+            {{ form.password }}
+        </div>
+        {% if form.errors %}
+            {% for error in form.password.errors %}
+                <p class="center register-form-row register-form-row-error-message">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        <div class="center register-form-row register-form-row-submit-button">
+            <button class="register-form-submit-button" type="submit">
+                Submit
+            </button>
+        </div>
+    </form>
+</section>
+</body>
+</html>
