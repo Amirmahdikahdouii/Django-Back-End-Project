@@ -6,38 +6,70 @@
 }
 
 @font-face {
-    src: url("../../font/Manrope-Light.ttf");
+    src: url("../../font/Prompt-Light.ttf");
     font-family: form-title;
 }
 
 @font-face {
-    src: url("../../font/LibreFranklin-Light.ttf");
+    src: url("../../font/RobotoCondensed-Regular.ttf");
     font-family: form-label;
 }
 
+
+@font-face {
+    src: url("../../font/Nunito-Regular.ttf");
+    font-family: switch-links;
+}
+
 body {
-    background-image: url("../../img/Backround/eberhard-grossgasteiger-Vg7xgTzU97M-unsplash.jpg");
+    background-image: url("../../img/Backround/isai-ramos-_3SFFsWqCVg-unsplash.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
 }
 
 .main-section {
-    padding: 1% 0 2%;
-    margin: 5% auto 1%;
-    width: 50%;
+    padding: 3% 0;
+    margin: 3% auto 1%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    background-color: #1a132f;
+    background-color: rgba(8, 32, 50, .7);
 }
 
 .form-title {
+    width: 70%;
     margin: 0 auto;
-    color: #F7E2E2;
+    text-align: left;
+    color: white;
     font-weight: bold;
     font-size: 25px;
     font-family: form-title;
+}
+
+.switch-page-links-container {
+    margin: 1% auto;
+    width: 70%;
+    justify-content: space-around;
+}
+
+.switch-page-link {
+    padding: 2% 6%;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: switch-links;
+    color: #ccc;
+    border: 1px solid #ccc;
+    transition: all 400ms;
+    border-radius: 10px;
+    background-color: rgb(51, 71, 86);
+}
+
+.switch-page-link:hover, .switch-page-link-active {
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: rgb(8, 32, 50);
 }
 
 .register-form {
@@ -51,15 +83,7 @@ body {
     width: 100%;
     margin: 2% 0;
     display: flex;
-    justify-content: space-between;
-}
-
-.register-form-row-error-message{
-    margin: 1% 0;
-    color: #F24C4C;
-    font-weight: bold;
-    font-size: 16px;
-    font-family: form-title;
+    justify-content: space-around;
 }
 
 .register-form-row-submit-button {
@@ -67,8 +91,8 @@ body {
 }
 
 .register-form-label {
-    color: #F7E2E2;
-    width: 50%;
+    color: rgb(240, 165, 0);
+    width: 30%;
     font-size: 17px;
     text-align: left;
     font-weight: bold;
@@ -77,33 +101,45 @@ body {
 }
 
 .register-form-label + input {
-    max-width: 50%;
-    padding: 2% 5%;
+    max-width: 60%;
+    padding: 2% 7%;
     font-size: 15px;
     font-weight: bold;
     font-family: form-label;
     border: none;
     border-radius: 7px;
-    background-color: #5B7DB1;
-    color: #F7E2E2;
+    background-color: rgb(51, 71, 86);
+    color: rgb(240, 165, 0);
 }
 
-.register-form-input::placeholder {
-    color: #F7E2E2;
-    font-size: 15px;
-    font-weight: bold;
-    font-family: form-label;
+.register-form-label + input:focus {
+    background-color: #082032;
 }
 
 .register-form-submit-button {
-    padding: 3% 7%;
+    padding: 2.5% 6%;
     margin: 0 auto;
-    color: #F7E2E2;
-    background-color: #5B7DB1;
+    color: rgba(240, 165, 0, .9);
+    background-color: rgb(51, 71, 86);
     font-size: 17px;
     font-weight: bold;
     font-family: form-label;
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    transition: all 400ms;
+}
+
+.register-form-submit-button:hover {
+    background-color: #205375;
+}
+
+.register-form-row-error-message {
+    width: 90%;
+    justify-content: flex-start;
+    margin: 1% auto;
+    color: #F24C4C;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: switch-links;
 }

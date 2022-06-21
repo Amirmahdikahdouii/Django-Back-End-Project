@@ -10,6 +10,7 @@
     src: url("../font/Nunito-Regular.ttf");
 }
 
+
 .center {
     display: flex;
     justify-content: center;
@@ -22,16 +23,16 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #1A132F;
+    background-color: #082032;
 }
 
 .header-logo-title {
     width: 15%;
 }
 
-.header-logo-title > h1 {
+.header-logo-title>h1 {
     font-size: 35px;
-    color: #5B7DB1;
+    color: #F0A500;
     font-weight: bold;
     font-family: header-logo;
 }
@@ -43,8 +44,8 @@
     justify-content: space-around;
 }
 
-.header-menu-item > a {
-    color: #F7E2E2;
+.header-menu-item>a{
+    color: #fff;
     font-weight: bold;
     font-size: 20px;
     font-family: header-logo;

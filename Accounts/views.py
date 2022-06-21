@@ -8,7 +8,7 @@ from django.views import View
 
 # Create your views here.
 
-def registerPage(req):
+def signUp(req):
     if req.user.is_authenticated:
         return HttpResponse("Profile Page")
     if req.method == "POST":
@@ -22,10 +22,10 @@ def registerPage(req):
             user = User(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
             user.save()
             return redirect("loginPage")
-        return render(req, "account/registerPage.html", {"form": registerForm})
+        return render(req, "account/sign-upPage.html", {"form": registerForm})
     elif req.method == "GET":
         registerForm = RegisterForm()
-        return render(req, "account/registerPage.html", {"form": registerForm})
+        return render(req, "account/sign-upPage.html", {"form": registerForm})
     else:
         return HttpResponseForbidden(content_type="html", content="Not Access To this page")
 
