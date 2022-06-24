@@ -1,2 +1,32 @@
 {% extends 'main/main.html' %}
+{% load static %}
 {% block title %}Home{% endblock %}
+{% block css %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+{% endblock %}
+{% block main %}
+    <section class="carousel-container">
+        <div class="carousel-items-container">
+            {% for carousel in carouselObjects %}
+                <div class="center carousel-item{% if forloop.first %} carousel-item-active{% endif %}">
+                    <button class="center change-carousel-items-button change-carousel-items-previous-button">&lt;
+                    </button>
+                    <img src="{{ carousel.image.url }}"
+                         class="carousel-item-image"
+                         width="100%" height="100%" alt="">
+                    <div class="carousel-item-image-dark-theme"></div>
+                    <div class="carousel-item-info-container">
+                        <h1 class="carousel-item-title">{{ carousel.title|title }}</h1>
+                        <p class="carousel-item-description">{{ carousel.description|capfirst }}</p>
+                        <a href="{{ carousel.link }}" class="carousel-item-visit-button">Visit Link</a>
+                    </div>
+                    <button class="center change-carousel-items-button change-carousel-items-next-button">&gt;</button>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/carousel.js' %}"></script>
+{% endblock %}
