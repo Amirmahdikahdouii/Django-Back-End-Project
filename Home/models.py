@@ -15,3 +15,4 @@ class HomeCarousel(models.Model):
 
     class Meta:
         verbose_name = "Home Carousel"
+        verbose_name_plural = "Home Carousel Table"
