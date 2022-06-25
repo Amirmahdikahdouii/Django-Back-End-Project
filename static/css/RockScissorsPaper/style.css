@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: scoreBoard;
-    src: url('../../font/BebasNeue-Regular.ttf');
+    src: url('../../font/Nunito-Regular.ttf');
 }
 
 @font-face {
@@ -32,6 +32,7 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+    overflow: hidden;
 }
 
 .header {
@@ -102,12 +103,11 @@ body {
     margin: 1% auto;
     padding: 1%;
     border-radius: 10px;
-    /* background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); */
     background-color: #EC9B3B;
 }
 
-.computer-action-picture,
-.user-action-picture {
+#computer-action-picture,
+#user-action-picture {
     border-radius: 10px;
 }
 
@@ -137,7 +137,7 @@ body {
     margin-left: 5px;
 }
 
-#play-button {
+.play-button {
     margin-bottom: 1%;
     border: none;
     border-radius: 7px;
@@ -149,4 +149,10 @@ body {
     /* background-image: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%); */
     background-color: #F24C4C;
     cursor: pointer;
+}
+
+.play-buttons-container{
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 1% 0;
 }
