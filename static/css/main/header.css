@@ -7,7 +7,23 @@
 
 @font-face {
     font-family: header-logo;
-    src: url("../font/Nunito-Regular.ttf");
+    src: url("../../font/Nunito-Regular.ttf");
+}
+
+@font-face {
+    src: url("../../font/Prompt-Light.ttf");
+    font-family: our-commitment-title;
+}
+
+@font-face {
+    src: url("../../font/RobotoCondensed-Regular.ttf");
+    font-family: header-main-description;
+}
+
+
+@font-face {
+    src: url("../../font/Nunito-Regular.ttf");
+    font-family: switch-links;
 }
 
 
@@ -30,7 +46,7 @@
     width: 15%;
 }
 
-.header-logo-title>h1 {
+.header-logo-title > h1 {
     font-size: 35px;
     color: #F0A500;
     font-weight: bold;
@@ -44,7 +60,7 @@
     justify-content: space-around;
 }
 
-.header-menu-item>a{
+.header-menu-item > a {
     color: #fff;
     font-weight: bold;
     font-size: 20px;
