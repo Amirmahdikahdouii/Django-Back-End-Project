@@ -1,68 +1,83 @@
+{% extends "main/main.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>ROCK SCISSORS PAPER</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}Rock Scissors Paper{% endblock %}
+{% block css %}
     <link href="{% static 'css/RockScissorsPaper/style.css' %}" rel='stylesheet'/>
-</head>
-
-<body>
-<header class="header center">
-    <h1 class="header-title">Rock Scissors Paper</h1>
-</header>
-<section class="main-section">
-    <div class="user-section">
-        <div class="player-name-container">
-            <h1 class="player-name-title">Player: </h1>
-            <h1 class="player-name">Amir</h1>
-        </div>
-        <h1 class="scoreBoard" id="user-play-result">Result</h1>
-        <div class="center user-action-picture-container">
-            <img src="{% static 'img/RockScissorsPaper/paper-user.jpg' %}" id="user-action-picture"
-                 width="100%" height="100%" alt=""/>
-        </div>
-        <div class="scoreBoard-container">
-            <div class="center scoreBoard-container-row">
-                <span class="scoreBoard-title">Win: </span>
-                <span class="scoreBoard-counter" id="user-win-counter">0</span>
+{% endblock %}
+{% block main %}
+    <header class="header-component center">
+        <h1 class="header-component-title">Rock Scissors Paper</h1>
+    </header>
+    <section class="main-section">
+        <div class="user-section">
+            <div class="player-name-container">
+                {% if request.user.is_authenticated %}
+                    <h1 class="player-name-title">Player: </h1>
+                    <h1 class="player-name">{{ user }}</h1>
+                {% else %}
+                    <h1 class="player-name-title">Player: </h1>
+                    <h1 class="player-name">You</h1>
+                {% endif %}
             </div>
-            <div class="center scoreBoard-container-row">
-                <span class="scoreBoard-title">Lose: </span>
-                <span class="scoreBoard-counter" id="user-lose-counter">0</span>
+            <h1 class="scoreBoard" id="user-play-result">Result</h1>
+            <div class="center user-action-picture-container">
+                <img src="{% static 'img/RockScissorsPaper/paper-user.jpg' %}" id="user-action-picture"
+                     width="100%" height="100%" alt=""/>
+            </div>
+            <div class="scoreBoard-container">
+                <div class="center scoreBoard-container-row">
+                    <span class="scoreBoard-title">Win: </span>
+                    <span class="scoreBoard-counter" id="user-win-counter">0</span>
+                </div>
+                <div class="center scoreBoard-container-row">
+                    <span class="scoreBoard-title">Lose: </span>
+                    <span class="scoreBoard-counter" id="user-lose-counter">0</span>
+                </div>
+            </div>
+            {% if request.user.is_authenticated %}
+                <div class="scoreBoard-container">
+                    <div class="center scoreBoard-container-row">
+                        <span class="scoreBoard-title" id="user-total-win-title">Total Win: </span>
+                        <span class="scoreBoard-counter" id="user-total-win-counter">{% if win > 0 %}{{ win }}{% else %}
+                            0{% endif %}</span>
+                    </div>
+                    <div class="center scoreBoard-container-row">
+                        <span class="scoreBoard-title" id="user-total-lose-title">Total Lose: </span>
+                        <span class="scoreBoard-counter" id="user-total-lose-counter">{% if lose > 0 %}
+                            {{ lose }}{% else %}
+                            0{% endif %}</span>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="center play-buttons-container">
+                <button id="rock-button" type="button" class="play-button">Rock !</button>
+                <button id="scissors-button" type="button" class="play-button">Scissors !</button>
+                <button id="paper-button" type="button" class="play-button">Paper !</button>
             </div>
         </div>
-        <div class="center play-buttons-container">
-            <button id="rock-button" type="button" class="play-button">Rock !</button>
-            <button id="scissors-button" type="button" class="play-button">Scissors !</button>
-            <button id="paper-button" type="button" class="play-button">Paper !</button>
-        </div>
-    </div>
-    <div class="computer-section">
-        <div class="player-name-container">
-            <h1 class="player-name-title">Player: </h1>
-            <h1 class="player-name">PC</h1>
-        </div>
-        <h1 class="scoreBoard" id="pc-play-result">Result</h1>
-        <div class="center computer-action-picture-container">
-            <img src="{% static 'img/RockScissorsPaper/paper-pc.jpg' %}"
-                 id="computer-action-picture" width="100%" height="100%" alt=""/>
-        </div>
-        <div class="scoreBoard-container">
-            <div class="center scoreBoard-container-row">
-                <span class="scoreBoard-title">Win: </span>
-                <span class="scoreBoard-counter" id="pc-win-counter">0</span>
+        <div class="computer-section">
+            <div class="player-name-container">
+                <h1 class="player-name-title">Player: </h1>
+                <h1 class="player-name">PC</h1>
             </div>
-            <div class="center scoreBoard-container-row">
-                <span class="scoreBoard-title">Lose: </span>
-                <span class="scoreBoard-counter" id="pc-lose-counter">0</span>
+            <h1 class="scoreBoard" id="pc-play-result">Result</h1>
+            <div class="center computer-action-picture-container">
+                <img src="{% static 'img/RockScissorsPaper/paper-pc.jpg' %}"
+                     id="computer-action-picture" width="100%" height="100%" alt=""/>
+            </div>
+            <div class="scoreBoard-container">
+                <div class="center scoreBoard-container-row">
+                    <span class="scoreBoard-title">Win: </span>
+                    <span class="scoreBoard-counter" id="pc-win-counter">0</span>
+                </div>
+                <div class="center scoreBoard-container-row">
+                    <span class="scoreBoard-title">Lose: </span>
+                    <span class="scoreBoard-counter" id="pc-lose-counter">0</span>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<script src="{% static 'js/RockScissorsPaper/script.js' %}"></script>
-</body>
-
-</html>
+    </section>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/RockScissorsPaper/script.js' %}"></script>
+{% endblock %}

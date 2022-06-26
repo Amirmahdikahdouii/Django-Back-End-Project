@@ -32,18 +32,17 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    overflow: hidden;
 }
 
-.header {
+.header-component {
     width: 100%;
 }
 
-.header-title {
+.header-component-title {
     margin: 1% 0;
     padding: 0 2%;
     color: #F7D716;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
     font-family: headerTitle;
     border-bottom: 1px solid thistle;
@@ -96,10 +95,10 @@ body {
 
 .computer-action-picture-container,
 .user-action-picture-container {
-    width: 300px;
-    height: 400px;
-    max-width: 300px;
-    max-height: 400px;
+    width: 250px;
+    height: 350px;
+    max-width: 250px;
+    max-height: 350px;
     margin: 1% auto;
     padding: 1%;
     border-radius: 10px;
@@ -121,7 +120,7 @@ body {
 
 .scoreBoard-container-row {
     display: flex;
-    padding: 0% 1%;
+    padding: 0 1%;
     margin: 1% auto;
 }
 
@@ -131,6 +130,14 @@ body {
     font-size: 20px;
     font-weight: bold;
     font-family: headerTitle;
+}
+
+#user-total-win-title {
+    color: #8fc1e3;
+}
+
+#user-total-lose-title {
+    color: #F24C4C;
 }
 
 .scoreBoard-counter {
@@ -146,12 +153,11 @@ body {
     color: #293462;
     font-weight: bold;
     font-family: headerTitle;
-    /* background-image: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%); */
     background-color: #F24C4C;
     cursor: pointer;
 }
 
-.play-buttons-container{
+.play-buttons-container {
     width: 100%;
     justify-content: space-evenly;
     padding: 1% 0;
