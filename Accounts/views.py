@@ -7,40 +7,35 @@ from django.views import View
 
 
 # Create your views here.
+class SignUpView(View):
+    form_class = RegisterForm
+    initial = {"key": "value"}
+    template_name = "account/accountForm.html"
 
-def signUp(req):
-    if req.user.is_authenticated:
-        return HttpResponse("Profile Page")
-    if req.method == "POST":
-        registerForm = RegisterForm(req.POST)
-        if registerForm.is_valid():
-            username = registerForm.cleaned_data.get("username")
-            email = registerForm.cleaned_data.get("email", "")
-            password = registerForm.cleaned_data.get("password1")
-            first_name = registerForm.cleaned_data.get("first_name", "")
-            last_name = registerForm.cleaned_data.get("last_name", "")
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponse("Profile Page")
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get("username")
+            email = form.cleaned_data.get("email", "")
+            password = form.cleaned_data.get("password1")
+            first_name = form.cleaned_data.get("first_name", "")
+            last_name = form.cleaned_data.get("last_name", "")
             user = User(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
             user.save()
             return redirect("loginPage")
-        return render(req, "account/sign-upPage.html", {"form": registerForm})
-    elif req.method == "GET":
-        registerForm = RegisterForm()
-        return render(req, "account/sign-upPage.html", {"form": registerForm})
-    else:
-        return HttpResponseForbidden(content_type="html", content="Not Access To this page")
-
-
-def logOut(req):
-    if req.user.is_authenticated:
-        logout(req)
-        return redirect("loginPage")
-    return HttpResponseForbidden("You Dont Have Access to this URL")
+        return render(request, self.template_name, {"form": form})
 
 
 class LoginClassView(View):
     form_class = LoginForm
     initial = {"key": "value"}
-    template_name = "account/loginPage.html"
+    template_name = "account/accountForm.html"
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -52,7 +47,7 @@ class LoginClassView(View):
         form = self.form_class(request.POST)
         userNameExist = form.checkUsername()
         if userNameExist is not None:
-            return render(request, "account/loginPage.html", {"form": form, "error": userNameExist})
+            return render(request, self.template_name, {"form": form, "error": userNameExist})
         username = form.data.get("username")
         password = form.data.get("password")
 
@@ -73,5 +68,12 @@ class LoginClassView(View):
                 login(request, user)
                 return HttpResponse("profile Page")
             except User.DoesNotExist:
-                return render(request, "account/loginPage.html",
+                return render(request, self.template_name,
                               {"form": form, "error": "Username or Password is Not Valid"})
+
+
+def logOut(req):
+    if req.user.is_authenticated:
+        logout(req)
+        return redirect("loginPage")
+    return HttpResponseForbidden("You Dont Have Access to this URL")

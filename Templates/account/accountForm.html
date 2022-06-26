@@ -1,0 +1,48 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block title %}
+    {% url "signupPage" as signup %}
+    {% url "loginPage" as login %}
+    {% if request.path == signup %}
+        Sign Up
+    {% else %}
+        Login
+    {% endif %}
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/accounts/registerPage.css' %}"/>
+{% endblock %}
+{% block main %}
+    {% url "signupPage" as signup %}
+    {% url "loginPage" as login %}
+    <section class="main-section">
+        <div class="center switch-page-links-container">
+            <a href="{{ signup }}"
+               class="switch-page-link{% if request.path == signup %} switch-page-link-active{% endif %}">Sign-Up</a>
+            <a href="{{ login }}"
+               class="switch-page-link{% if request.path == login %} switch-page-link-active{% endif %}">Login</a>
+        </div>
+        <form class="register-form" method="post"
+              action="{% if request.path == signup %}{{ signup }}{% else %}{{ login }}{% endif %}">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                <div class="center register-form-row">
+                    <label for="{{ field.id_for_label }}"
+                           class="register-form-label">{{ field.label|title|add:": " }}</label>
+                    {{ field }}
+                </div>
+                {% if form.errors %}
+                    {% for error in field.errors %}
+                        <p class="center register-form-row register-form-row-error-message">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            <div class="center register-form-row register-form-row-submit-button">
+                <button class="register-form-submit-button" type="submit">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </section>
+{% endblock %}
