@@ -77,3 +77,11 @@ def logOut(req):
         logout(req)
         return redirect("loginPage")
     return HttpResponseForbidden("You Dont Have Access to this URL")
+
+
+# TODO: Make View For Profile
+class ProfileView(View):
+    template_name = ""
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {})
