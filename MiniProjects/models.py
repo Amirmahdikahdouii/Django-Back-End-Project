@@ -6,8 +6,8 @@ from .utils.changeImageName import changePhotoNameMiniProjects
 
 class MiniProjectsCardList(models.Model):
     name = models.CharField(max_length=500, verbose_name="Project Name")
-    path = models.CharField(max_length=500, verbose_name="URL Path")
-    image = models.ImageField(changePhotoNameMiniProjects, verbose_name="Image")
+    path = models.CharField(max_length=500, verbose_name="Slug Path")
+    image = models.ImageField(changePhotoNameMiniProjects)
     description = models.CharField(max_length=10000, verbose_name="Description")
 
     def __str__(self):
