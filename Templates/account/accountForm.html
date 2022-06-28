@@ -24,6 +24,7 @@
         </div>
         <form class="register-form" method="post"
               action="{% if request.path == signup %}{{ signup }}{% else %}{{ login }}{% endif %}">
+            <p class="center register-form-row register-form-row-error-message">{{ error }}</p>
             {% csrf_token %}
             {{ form.non_field_errors }}
             {% for field in form %}

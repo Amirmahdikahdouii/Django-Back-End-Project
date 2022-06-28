@@ -4,6 +4,7 @@ from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.views import View
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -14,7 +15,7 @@ class SignUpView(View):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return HttpResponse("Profile Page")
+            return redirect("profilePage")
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {"form": form})
 
@@ -32,14 +33,14 @@ class SignUpView(View):
         return render(request, self.template_name, {"form": form})
 
 
-class LoginClassView(View):
+class LoginView(View):
     form_class = LoginForm
     initial = {"key": "value"}
     template_name = "account/accountForm.html"
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return HttpResponse("profile Page")
+            return redirect("profilePage")
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {"form": form})
 
@@ -57,7 +58,6 @@ class LoginClassView(View):
                 return userModel
             userModel = User.objects.get(email=userName, password=passWord)
             return userModel
-
         try:
             user = getUserModel(username, password, "username")
             login(request, user)
@@ -81,7 +81,7 @@ def logOut(req):
 
 # TODO: Make View For Profile
 class ProfileView(View):
-    template_name = ""
+    template_name = "account/dashboard.html"
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, {})

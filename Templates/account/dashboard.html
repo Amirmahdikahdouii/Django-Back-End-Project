@@ -1,0 +1,10 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'css/accounts/dashboard-sidebar.css' %}" rel="stylesheet">
+{% endblock %}
+{% block main %}
+    <section class="profile-section-container">
+        {% include 'account/dashboard-sidebar.html' %}
+    </section>
+{% endblock %}

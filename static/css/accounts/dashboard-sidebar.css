@@ -1,0 +1,108 @@
+.profile-section-container{
+    width: 90%;
+    padding: 1%;
+    margin: 2% auto;
+    display: flex;
+    background-color: rgba(0, 0, 0, .6);
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.sideBar-menu-container {
+    width: 25%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-right: 1px solid #ccc;
+    min-height: 100%;
+}
+
+.sideBar-menu-user-profile-photo-container {
+    margin: 1% 0 3%;
+    width: 100%;
+    max-width: 400px;
+    max-height: 300px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sideBar-menu-user-profile-photo-exit-botton {
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.sideBar-menu-user-profile-photo-exit-botton>svg {
+    width: 22px;
+    height: 22px;
+    color: #aaa;
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+.sideBar-menu-user-profile-photo-exit-botton>svg:hover {
+    color: white;
+}
+
+.sideBar-menu-user-profile-photo-holder {
+    margin: 2% 0;
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+    padding: 1%;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.sideBar-menu-user-profile-photo {
+    border-radius: 50%;
+}
+
+.sideBar-menu-user-profile-photo-username {
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    font-family: header-main-title;
+}
+
+.sideBar-menu-items-container {
+    width: 90%;
+    padding: 1% 0;
+}
+
+.sideBar-menu-list {
+    width: 80%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.sideBar-menu-item {
+    list-style: disc;
+    color: navajowhite;
+    margin: 2% 0 1% 2%;
+}
+
+.sideBar-menu-item>a {
+    color: #aaa;
+    font-size: 17px;
+    font-family: header-main-description;
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+.sideBar-menu-item>a:hover {
+    color: white;
+}
+
+.sideBar-menu-item>.sideBar-menu-item-active {
+    color: white;
+    font-weight: bold;
+}
