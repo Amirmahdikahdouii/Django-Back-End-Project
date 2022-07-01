@@ -1,0 +1,26 @@
+body {
+    background-image: url("../../img/Backround/isai-ramos-_3SFFsWqCVg-unsplash.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.main-section-content-container {
+    width: 70%;
+    padding: 1%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.main-section-content-title {
+    width: 80%;
+    text-align: left;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    font-family: header-logo;
+    border-bottom: 1px solid #ccc;
+}

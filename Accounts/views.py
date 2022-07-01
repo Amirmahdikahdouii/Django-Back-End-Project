@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, ChangePasswordForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.views import View
@@ -58,6 +58,7 @@ class LoginView(View):
                 return userModel
             userModel = User.objects.get(email=userName, password=passWord)
             return userModel
+
         try:
             user = getUserModel(username, password, "username")
             login(request, user)
@@ -85,3 +86,23 @@ class ProfileView(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, {})
+
+
+class ProfileChangePasswordView(View):
+    form_class = ChangePasswordForm
+    template_name = "account/dashboard.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        changePasswordForm = self.form_class()
+        context["form"] = changePasswordForm
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        changePasswordForm = self.form_class(request.POST)
+        userObject, oldPasswordValue = changePasswordForm.checkOldPassword(username=request.user.username)
+        newPassword = changePasswordForm.checkNewPasswordAndConfirmField()
+        changePasswordForm.changeNewPassword(userObject, newPassword, oldPasswordValue)
+        login(request, userObject)
+        # Todo: make a view for user to say that change password was successful!
+        return redirect("profilePage")

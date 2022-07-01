@@ -1,10 +1,20 @@
 {% extends 'main/main.html' %}
 {% load static %}
 {% block css %}
-    <link href="{% static 'css/accounts/dashboard-sidebar.css' %}" rel="stylesheet">
+    {% url 'profileChangePassword' as profileChangePasswordViewUrl %}
+    <link href="{% static 'css/accounts/dashboard-sidebar.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/accounts/dashboard.css' %}" rel="stylesheet"/>
+    {% if request.path == profileChangePasswordViewUrl %}
+        <link href="{% static 'css/accounts/profileChangePassword.css' %}" rel="stylesheet"/>
+    {% endif %}
 {% endblock %}
 {% block main %}
+    {% url 'profilePage' as profilePageView %}
+    {% url 'profileChangePassword' as profileChangePasswordViewUrl %}
     <section class="profile-section-container">
         {% include 'account/dashboard-sidebar.html' %}
+        {% if request.path == profileChangePasswordViewUrl %}
+            {% include 'account/changePasswordInProflie.html' %}
+        {% endif %}
     </section>
 {% endblock %}

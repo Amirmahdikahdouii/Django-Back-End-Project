@@ -1,4 +1,6 @@
 {% load static %}
+{% url 'profilePage' as profileViewUrl %}
+{% url 'profileChangePassword' as profileChangePasswordViewUrl %}
 <div class="sideBar-menu-container">
     <div class="sideBar-menu-user-profile-photo-container">
         <div class="sideBar-menu-user-profile-photo-exit-botton center">
@@ -22,11 +24,15 @@
     </div>
     <div class="sideBar-menu-items-container center">
         <ul class="sideBar-menu-list">
-            <li class="sideBar-menu-item"><a href="{% url 'profilePage' %}">Dashboard</a></li>
+            <li class="sideBar-menu-item"><a href="{{ profileViewUrl }}"
+                                             {% if request.path == profileViewUrl %}class="sideBar-menu-item-active"{% endif %}>Dashboard</a>
+            </li>
             <li class="sideBar-menu-item"><a href="#">Games Scores</a></li>
             <li class="sideBar-menu-item"><a href="#">Blog Posts</a></li>
             <li class="sideBar-menu-item"><a href="#">Change Personal Info</a></li>
-            <li class="sideBar-menu-item"><a href="#">Change Password</a></li>
+            <li class="sideBar-menu-item"><a href="{{ profileChangePasswordViewUrl }}"
+                                             {% if request.path == profileChangePasswordViewUrl %}class="sideBar-menu-item-active"{% endif %}>Change
+                Password</a></li>
             <li class="sideBar-menu-item"><a href="#">Settings</a></li>
         </ul>
     </div>
