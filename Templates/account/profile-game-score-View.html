@@ -1,0 +1,21 @@
+<div class="main-section-content-container" id="main-section-content-container-change-password">
+    <h1 class="main-section-content-title">Game Scores</h1>
+    <div class="show-info-table">
+        {% for object in userObjects %}
+            <div class="show-info-table-row">
+                <div class="show-info-table-col-number">{{ forloop.counter }}</div>
+                <div class="show-info-table-col">
+                    <span class="show-use-info-title">{{ object.getGameName }}</span>
+                </div>
+                <div class="show-info-table-col">
+                    <span class="show-use-info-title">WinCount: </span>
+                    <span class="show-use-info-value">{{ object.winCount }}</span>
+                </div>
+                <div class="show-info-table-col">
+                    <span class="show-use-info-title">LoseCount: </span>
+                    <span class="show-use-info-value">{{ object.loseCount }} </span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

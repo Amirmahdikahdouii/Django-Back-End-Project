@@ -9,6 +9,9 @@ class RockScissorsPaper(models.Model):
     winCount = models.IntegerField(default=0, verbose_name="Win")
     loseCount = models.IntegerField(default=0, verbose_name="Lose")
 
+    def getGameName(self):
+        return "Rock Scissors Paper"
+
     def __str__(self):
         return f"{self.id}.{self.user.username}"
 

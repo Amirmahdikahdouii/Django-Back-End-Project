@@ -4,7 +4,6 @@ from .forms import RegisterForm, LoginForm, ChangePasswordForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.views import View
-from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -86,6 +85,20 @@ class ProfileView(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, {})
+
+
+class ProfileGameScoreView(View):
+    template_name = "account/dashboard.html"
+
+    def get(self, request, *args, **kwargs):
+        from Games.models import RockScissorsPaper
+        username = request.user.username
+        try:
+            userObjectRockScissorsPaper = RockScissorsPaper.objects.get(user__username=username)
+        except RockScissorsPaper.DoesNotExist:
+            userObjectRockScissorsPaper = None
+        context = {"userObjects": [userObjectRockScissorsPaper]}
+        return render(request, self.template_name, context)
 
 
 class ProfileChangePasswordView(View):
