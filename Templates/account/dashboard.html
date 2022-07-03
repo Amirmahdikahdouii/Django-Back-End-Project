@@ -3,31 +3,43 @@
 {% block title %}
     {% url 'profilePage' as profilePage %}
     {% url 'profileGameScore' as profileGameScoreViewUrl %}
+    {% url 'profileBlogView' as profileBlogViewUrl %}
     {% url 'profileChangePassword' as profileChangePasswordViewUrl %}
     {% if request.path == profilePage %}Profile{% endif %}
     {% if request.path == profileGameScoreViewUrl %}Game Scores{% endif %}
+    {% if request.path == profileBlogViewUrl %}Blog{% endif %}
     {% if request.path == profileChangePasswordViewUrl %}Change Password{% endif %}
 {% endblock %}
 {% block css %}
     {% url 'profileGameScore' as profileGameScoreViewUrl %}
+    {% url 'profileBlogView' as profileBlogViewUrl %}
+    {% url 'profileUpdateUserDataView' as profileUpdateUserDataUrl %}
     {% url 'profileChangePassword' as profileChangePasswordViewUrl %}
     <link href="{% static 'css/accounts/profile-sidebar-menu.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/accounts/dashboard.css' %}" rel="stylesheet"/>
     {% if request.path == profileGameScoreViewUrl %}
         <link href="{% static 'css/accounts/profile-game-score-View.css' %}" rel="stylesheet"/>
     {% endif %}
-    {% if request.path == profileChangePasswordViewUrl %}
+    {% if request.path == profileChangePasswordViewUrl or request.path == profileUpdateUserDataUrl %}
         <link href="{% static 'css/accounts/profile-change-password-view.css' %}" rel="stylesheet"/>
     {% endif %}
 {% endblock %}
 {% block main %}
     {% url 'profilePage' as profilePageView %}
     {% url 'profileGameScore' as profileGameScoreViewUrl %}
+    {% url 'profileBlogView' as profileBlogViewUrl %}
+    {% url 'profileUpdateUserDataView' as profileUpdateUserDataUrl %}
     {% url 'profileChangePassword' as profileChangePasswordViewUrl %}
     <section class="profile-section-container">
         {% include 'account/profile-sidebar-menu.html' %}
         {% if request.path == profileGameScoreViewUrl %}
             {% include 'account/profile-game-score-View.html' %}
+        {% endif %}
+        {% if request.path == profileBlogViewUrl %}
+            {% include 'account/blog-view.html' %}
+        {% endif %}
+        {% if request.path == profileUpdateUserDataUrl %}
+            {% include 'account/profileUpdateUserData.html' %}
         {% endif %}
         {% if request.path == profileChangePasswordViewUrl %}
             {% include 'account/profile-change-password-view.html' %}

@@ -1,6 +1,7 @@
 {% load static %}
 {% url 'profilePage' as profileViewUrl %}
 {% url 'profileGameScore' as profileGameScoreViewUrl %}
+{% url 'profileBlogView' as profileBlogViewUrl %}
 {% url 'profileChangePassword' as profileChangePasswordViewUrl %}
 <div class="sideBar-menu-container">
     <div class="sideBar-menu-user-profile-photo-container">
@@ -21,15 +22,19 @@
             <img src="{% static 'img/Backround/eberhard-grossgasteiger-Vg7xgTzU97M-unsplash.jpg' %}" alt="User"
                  class="sideBar-menu-user-profile-photo" width="100%" height="100%">
         </div>
-        <h3 class="sideBar-menu-user-profile-photo-username">Username</h3>
+        <h3 class="sideBar-menu-user-profile-photo-username">{{ request.user.username|title|truncatechars:20 }}</h3>
     </div>
     <div class="sideBar-menu-items-container center">
         <ul class="sideBar-menu-list">
             <li class="sideBar-menu-item"><a href="{{ profileViewUrl }}"
                                              {% if request.path == profileViewUrl %}class="sideBar-menu-item-active"{% endif %}>Dashboard</a>
             </li>
-            <li class="sideBar-menu-item"><a href="{{ profileGameScoreViewUrl }}">Games Scores</a></li>
-            <li class="sideBar-menu-item"><a href="#">Blog Posts</a></li>
+            <li class="sideBar-menu-item"><a href="{{ profileGameScoreViewUrl }}"
+                                             {% if request.path == profileGameScoreViewUrl %}class="sideBar-menu-item-active"{% endif %}>Games
+                Scores</a></li>
+            <li class="sideBar-menu-item"><a href="{{ profileBlogViewUrl }}"
+                                             {% if request.path == profileBlogViewUrl %}class="sideBar-menu-item-active"{% endif %}>Blog
+                Posts</a></li>
             <li class="sideBar-menu-item"><a href="#">Change Personal Info</a></li>
             <li class="sideBar-menu-item"><a href="{{ profileChangePasswordViewUrl }}"
                                              {% if request.path == profileChangePasswordViewUrl %}class="sideBar-menu-item-active"{% endif %}>Change

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 
+# Validations is only with Username and Username Fill with Email Of User
 class RegisterForm(UserCreationForm):
     class Meta:
         model = User
@@ -97,3 +98,33 @@ class ChangePasswordForm(forms.Form):
         userObject.password = newPassword
         userObject.save()
         return True
+
+
+# TODO: make Form For get Full data from user
+class ProfileConfirmPersonalInfo(forms.Form):
+    mobile = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class": "change-personal-info-form-input",
+        }), required=True, max_length=12, empty_value=False, validators=[
+            validators.MaxLengthValidator(limit_value=12, message="Max Length for Phone Number is 12 character!")
+        ], label="Mobile: "
+    )
+    bio = forms.CharField(
+        widget=forms.Textarea(attrs={
+            "class": "change-personal-info-form-input",
+            "id": "user-bio-textarea"
+        }), required=True, max_length=1200, empty_value=False, validators=[
+            validators.MaxLengthValidator(limit_value=1200, message="Max Length for Bio is 1200 character!")
+        ], label="Bio: "
+    )
+    birthday = forms.DateField(
+        widget=forms.DateInput(attrs={
+            "class": "change-personal-info-form-input",
+            "placeholder": "Year/ Month/ Day"
+        }), required=True, label="Birthday: "
+    )
+    profile_picture = forms.ImageField(
+        widget=forms.FileInput(attrs={
+            "class": "change-personal-info-form-input",
+        }), required=True, allow_empty_file=False, label="Profile Image",
+    )

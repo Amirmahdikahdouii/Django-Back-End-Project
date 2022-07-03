@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .utils.changeImageName import changePhotoNameBlogImage, changePhotoNamePostGallery
-from django.utils import timezone
+from django.utils.timezone import now
 
 
 # Create your models here.
@@ -42,7 +42,7 @@ class BlogPostComment(models.Model):
     content = models.CharField(max_length=10000, verbose_name="Comment Content")
     post_rate = models.PositiveSmallIntegerField(default=3, verbose_name="Rate")
     read_by_admin = models.BooleanField(default=False, verbose_name="Is read")
-    date = models.DateField(default=timezone.now(), verbose_name="Date")
+    date = models.DateField(default=now, verbose_name="Date")
 
     def __str__(self):
         return f"{self.id}-{self.user.username}"

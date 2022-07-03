@@ -1,9 +1,10 @@
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, LoginForm, ChangePasswordForm
+from .forms import RegisterForm, LoginForm, ChangePasswordForm, ProfileConfirmPersonalInfo
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.views import View
+from .models import UserProfile
 
 
 # Create your views here.
@@ -21,12 +22,9 @@ class SignUpView(View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get("username")
-            email = form.cleaned_data.get("email", "")
+            username = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password1")
-            first_name = form.cleaned_data.get("first_name", "")
-            last_name = form.cleaned_data.get("last_name", "")
-            user = User(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
+            user = User(username=username, password=password, email=username)
             user.save()
             return redirect("loginPage")
         return render(request, self.template_name, {"form": form})
@@ -99,6 +97,34 @@ class ProfileGameScoreView(View):
             userObjectRockScissorsPaper = None
         context = {"userObjects": [userObjectRockScissorsPaper]}
         return render(request, self.template_name, context)
+
+
+class ProfileBlogSectionView(View):
+    template_name = "account/dashboard.html"
+
+    def get(self, request, *args, **kwargs):
+        username = request.user.username
+        user = User.objects.get(username=username)
+        try:
+            userProfileObject = UserProfile.objects.get(user=user)
+        except UserProfile.DoesNotExist:
+            return render(request, self.template_name, {"userExist": False})
+        return render(request, self.template_name)
+
+
+class ProfileGetFullUserDataView(View):
+    form_class = ProfileConfirmPersonalInfo
+    template_name = "account/dashboard.html"
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        profileConfirmDataForm = self.form_class()
+        context["form"] = profileConfirmDataForm
+        return render(request, self.template_name, context)
+
+    # TODO: make post method for saving data in db
+    def post(self, request, *args, **kwargs):
+        return render(request, self.template_name)
 
 
 class ProfileChangePasswordView(View):

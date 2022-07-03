@@ -1,7 +1,7 @@
 {% load static %}
 <div class="main-section-content-container" id="main-section-content-container-change-password">
-    <h1 class="main-section-content-title">Change Password</h1>
-    <form class="change-personal-info" action="{% url 'profileChangePassword' %}" method="post">
+    <h1 class="main-section-content-title">Change User Data</h1>
+    <form class="change-personal-info" action="{% url 'profileUpdateUserDataView' %}" method="post">
         {% csrf_token %}
         {% for field in form %}
             <div class="change-personal-info-form-row center">
